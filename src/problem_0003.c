@@ -21,42 +21,26 @@
 
 // https://projecteuler.net/problem=3
 
-#include <assert.h>
 #include <stdio.h>
 #include <stdint.h>
 
-int64_t isprime(int64_t n) {
-  for (int64_t i = 2; i < n/2; ++i) {
-    if (n % i == 0) return 0;
-  }
-  return 1;
-}
-
-int64_t nextprime(int64_t n) {
-  for (int64_t i = n+1; i < n*2; ++i) {
-    if (isprime(i)) return i;
-  }
-  fprintf(stderr, "Bertrand's postulate requires there be a "
-      "prime number between n and 2n");
-  abort();
-  return 0;
-}
-
-int64_t largestPrimeFactor(int64_t number) {
+int main() {
+  int64_t number = 600851475143;
   int64_t prime = 2;
+
+  /* Divide the number with increasingly higher primes. Since we start from
+   * the first prime number (2), during the runtime of the algorithm, the
+   * number will never actually be divisible by any non-prime number we
+   * encounter. */
   while (number > 2) {
-    if (number % prime != 0) {
-      prime = nextprime(prime);
+    if (number % prime == 0) {
+      number /= prime;
     }
     else {
-      number = number / prime;
+      prime += 1;
     }
   }
-  return prime;
-}
 
-int main() {
-  int64_t query = 600851475143;
-  printf("%lld\n", largestPrimeFactor(query));
+  printf("%lld\n", prime);
   return 0;
 }
