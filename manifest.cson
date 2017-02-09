@@ -1,0 +1,7 @@
+name: "NiklasRosenstein.projecteuler-solutions"
+version: "1.0.0"
+author: ""
+url: ""
+dependencies:
+  "craftr.lang.cxx": "*"
+options: {}

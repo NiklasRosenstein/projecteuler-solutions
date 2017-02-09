@@ -1,0 +1,12 @@
+# NiklasRosenstein.projecteuler-solutions
+
+cxx = load('craftr.lang.cxx')
+
+for file in glob('src/*.c'):
+  name =  path.rmvsuffix(path.basename(file))
+  runtarget(cxx.executable(
+    output = name,
+    inputs = cxx.compile_c(
+      sources = [file]
+    )
+  ), name = name)
