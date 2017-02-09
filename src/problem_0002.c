@@ -23,20 +23,19 @@
 
 #include <stdio.h>
 
-int fibevensum(int a, int b, int* sum) {
-  int result = a + b;
-  if (result >= 4000000) {
-    return result;
-  }
-  if (result%2 == 0) {
-    *sum += result;
-  }
-  return fibevensum(b, result, sum);
-}
-
 int main() {
+  int a = 1;
+  int b = 2;
   int sum = 2;
-  fibevensum(1, 2, &sum);
+  while (sum < 4000000) {
+    int temp = a + b;
+    if (temp % 2 == 0) {
+      sum += temp;
+    }
+    a = b;
+    b = temp;
+  }
+
   printf("%d\n", sum);
   return 0;
 }
