@@ -23,16 +23,16 @@
 
 #include <stdio.h>
 
+int gauss(int n) {
+  return n*(n+1) / 2;
+}
+
+int calc(int n) {
+  --n;
+  return gauss(n/3)*3 + gauss(n/5)*5 - gauss(n/15)*15;
+}
+
 int main() {
-  int sum = 0;
-  for (int i = 0; i*3 < 1000; ++i) {
-    sum += i*3;
-  }
-  for (int i = 0; i*5 < 1000; ++i) {
-    if ((i*5) % 3 != 0) {
-      sum += i*5;
-    }
-  }
-  printf("%d\n", sum);
+  printf("%d\n", calc(1000));
   return 0;
 }
